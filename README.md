@@ -59,7 +59,7 @@ Inside your group_vars env file
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
