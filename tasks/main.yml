@@ -1,0 +1,30 @@
+---
+
+- name: install sumologic rpm
+  yum:
+    name: '{{ sumologic_rpm_url }}'
+    state: present
+  become: yes  
+
+- name: put config file in place
+  template:
+    src: 'templates/user.properties.j2'
+    dest: '/opt/SumoCollector/config/user.properties'
+    owner: root
+    group: sumologic_collector
+  become: yes  
+
+- name: put sources file in place
+  template:
+    src: 'templates/sources.json.j2'
+    dest: '/opt/SumoCollector/config/sources.json'
+    owner: root
+    group: sumologic_collector
+  become: yes      
+
+- name: start service
+  service:
+    name: collector
+    state: stopped
+    enabled: yes
+  become: yes      

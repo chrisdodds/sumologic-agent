@@ -1,0 +1,5 @@
+---
+# defaults file for sumologic_agent
+env_timezone: 'Etc/UTC'
+sumologic_tracked_logs: []
+sumologic_ephemeral_agent: true

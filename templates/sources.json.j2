@@ -1,0 +1,68 @@
+{
+  "api.version": "v1",
+  "sources": [
+    {
+      "name": "Linux Secure Log",
+      "description": "Security events and user logins",
+      "category": "OS/Linux",
+      "automaticDateParsing": false,
+      "multilineProcessingEnabled": false,
+      "useAutolineMatching": false,
+      "forceTimeZone": true,
+      "timeZone": "{{ env_timezone }}",
+      "filters": [],
+      "encoding": "UTF-8",
+      "pathExpression": "/var/log/secure*",
+      "blacklist": [],
+      "sourceType": "LocalFile"
+    },
+    {
+      "name": "Linux Message Log",
+      "description": "System events, such as user creation, deletion, system start, shutdown, etc",
+      "category": "OS/Linux",
+      "automaticDateParsing": false,
+      "multilineProcessingEnabled": false,
+      "useAutolineMatching": false,
+      "forceTimeZone": true,
+      "timeZone": "{{ env_timezone }}",
+      "filters": [],
+      "encoding": "UTF-8",
+      "pathExpression": "/var/log/messages*",
+      "blacklist": [],
+      "sourceType": "LocalFile"
+    },
+    {
+      "name": "Linux Yum Log",
+      "description": "Package operations",
+      "category": "OS/Linux",
+      "automaticDateParsing": false,
+      "multilineProcessingEnabled": false,
+      "useAutolineMatching": false,
+      "forceTimeZone": true,
+      "timeZone": "{{ env_timezone }}",
+      "filters": [],
+      "encoding": "UTF-8",
+      "pathExpression": "/var/log/yum.log",
+      "blacklist": [],
+      "sourceType": "LocalFile"
+    }    
+{% for log in sumologic_tracked_logs %}
+    ,
+    {
+      "name": "{{ log.name }}",
+      "description": "{{ log.description }}",
+      "category": "{{ log.category }}",
+      "automaticDateParsing": false,
+      "multilineProcessingEnabled": false,
+      "useAutolineMatching": false,
+      "forceTimeZone": true,
+      "timeZone": "{{ env_timezone }}",
+      "filters": [{{ log.filters }}],
+      "encoding": "UTF-8",
+      "pathExpression": "{{ log.path }}",
+      "blacklist": [],
+      "sourceType": "LocalFile"
+    }
+{% endfor %}
+  ]
+}
