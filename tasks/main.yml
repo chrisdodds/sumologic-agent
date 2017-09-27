@@ -1,12 +1,15 @@
 ---
+- name: 'Download SumoCollector'
+  get_url:
+    url: '{{ sumologic_rpm_url }}'
+    dest: '/tmp/sumo_collector.rpm'
 
-- name: install sumologic rpm
+- name: 'Install SumoCollector redhat'
   yum:
-    name: '{{ sumologic_rpm_url }}'
+    name: '/tmp/sumo_collector.rpm'
     state: present
-  become: yes  
 
-- name: put config file in place
+- name: Put config file in place
   template:
     src: 'templates/user.properties.j2'
     dest: '/opt/SumoCollector/config/user.properties'
@@ -14,7 +17,7 @@
     group: sumologic_collector
   become: yes  
 
-- name: put sources file in place
+- name: Put sources file in place
   template:
     src: 'templates/sources.json.j2'
     dest: '/opt/SumoCollector/config/sources.json'
@@ -22,9 +25,9 @@
     group: sumologic_collector
   become: yes      
 
-- name: start service
+- name: Start service
   service:
     name: collector
-    state: stopped
+    state: started
     enabled: yes
   become: yes      

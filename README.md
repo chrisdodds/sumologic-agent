@@ -13,7 +13,7 @@ Role Variables
 
 Required:
 
-* sumologic_rpm_url - For some reason Sumo's RPMs are pod-specific, meaning you have to download a different RPM depending on where your pod is hosted. I would recommend downloading the RPM for your [pod's region](https://help.sumologic.com/Send-Data/Installed-Collectors/05Reference-Information-for-Collector-Installation/02Download-a-Collector-from-a-Static-URL) and hosting it in S3 or something similar.
+* sumologic_rpm_url - For some reason Sumo's RPMs are pod-specific, meaning you have to download a different RPM depending on where your pod is hosted. Check here for the RPM for your [pod's region](https://help.sumologic.com/Send-Data/Installed-Collectors/05Reference-Information-for-Collector-Installation/02Download-a-Collector-from-a-Static-URL).
 * sumologic_access_id - What it says on the tin.
 * sumologic_access_key - Same as above.
 
@@ -46,7 +46,7 @@ Inside your group_vars env file
 
     ---
     # env vars
-    sumologic_rpm_url: 'https://bucketname.s3.aws.amazon.com/sumo_collector.rpm
+    sumologic_rpm_url: 'https://collectors.us2.sumologic.com/rest/download/rpm/64'
     sumologic_access_id: 'XXXXXXXX'
     sumologic_access_key: 'XXXXXXX'
     sumologic_tracked_logs:
@@ -64,4 +64,4 @@ MIT
 Author Information
 ------------------
 
-Chris Dodds - @liquid_chickents - chrisdodds.net
+Chris Dodds - @liquid_chickens - chrisdodds.net
