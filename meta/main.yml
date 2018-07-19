@@ -8,5 +8,5 @@ galaxy_info:
       - 5
       - 6
 
-galaxy_tags: [sumologic]
+  galaxy_tags: [sumologic]
 dependencies: []
